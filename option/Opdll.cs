@@ -43,7 +43,7 @@ namespace BeastAutoRun.option
             //Debug.WriteLine("subHwnd " + subHwnd.ToString());
             int mainHwnd = hwnd;
 
-            ret = op.BindWindow(mainHwnd, "dx2", "windows", "windows", 0);
+            ret = op.BindWindow(mainHwnd, "dx", "windows", "windows", 0);
             if (ret == 0)
             {
                 Debug.WriteLine("binding failed");

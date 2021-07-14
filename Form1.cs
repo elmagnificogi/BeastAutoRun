@@ -1,5 +1,4 @@
-﻿using BeastAutoRun.option;
-using opLib;
+﻿using BeastAutoRun.script;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,11 +17,10 @@ namespace BeastAutoRun
         {
             InitializeComponent();
         }
-
+        AutoLoot autoLoot = new AutoLoot();
         private void button1_Click(object sender, EventArgs e)
         {
-            Opdll.Binding();
-            OpInterface opdll = Opdll.GetInstance();
+            autoLoot.start();
         }
     }
 }
