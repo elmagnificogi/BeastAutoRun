@@ -20,6 +20,12 @@ namespace BeastAutoRun.option
             // the default reslution
             //resolution = new Resolution(1600, 900);
         }
+
+        public bool GameCheck()
+        {
+            return Opdll.CheckBinding();
+        }
+
         public void Click(int x, int y)
         {
             opdll.MoveTo(x, y);

@@ -26,24 +26,7 @@ namespace BeastAutoRun.option
             }
             Debug.WriteLine("hwnd " + hwnd.ToString());
 
-            //int mainHwnd = op.FindWindowEx(hwnd, "RenderWindow", "TheRender");
-            //if (mainHwnd <= 0)
-            //{
-            //    Debug.WriteLine("cant find game render window");
-            //    return false;
-            //}
-            //Debug.WriteLine("mainHwnd " + mainHwnd.ToString());
-
-            //int subHwnd = op.FindWindowEx(mainHwnd, "subWin", "sub");
-            //if (subHwnd <= 0)
-            //{
-            //    Debug.WriteLine("cant find game sub window");
-            //    return false;
-            //}
-            //Debug.WriteLine("subHwnd " + subHwnd.ToString());
-            int mainHwnd = hwnd;
-
-            ret = op.BindWindow(mainHwnd, "dx", "windows", "windows", 0);
+            ret = op.BindWindow(hwnd, "dx", "windows", "windows", 0);
             if (ret == 0)
             {
                 Debug.WriteLine("binding failed");
@@ -52,7 +35,26 @@ namespace BeastAutoRun.option
             // wait binding
             op.Sleep(200);
 
+            optionHwnd = hwnd;
+
             //Test();
+            return true;
+        }
+
+        public static bool CheckBinding()
+        {
+            int hwnd = op.FindWindow("YYGameMakerYY", "Beastrun");
+            if (hwnd <= 0)
+            {
+                Debug.WriteLine("cant find game");
+                return false;
+            }
+
+            if(hwnd != optionHwnd)
+            {
+                op.UnBindWindow();
+                return Binding();
+            }
             return true;
         }
 
