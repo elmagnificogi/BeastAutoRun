@@ -155,6 +155,28 @@ namespace BeastAutoRun.script
                     option.Wait(2000);
                 }
 
+                // enter dungeon
+                if (option.RegnizeColor(807, 652, "BECDE5")
+                    && option.RegnizeColor(825, 627, "BECDE5"))
+                {
+                    Debug.WriteLine("enter arena");
+                    option.Click(807, 652);
+                    option.Wait(2000);
+                }
+
+                if (option.RegnizeColor(643, 521, "BFC4CC"))
+                {
+                    Debug.WriteLine("enter arena");
+                    for (int i = 0; i < 20; i++)
+                    {
+                        option.Click(643, 521);
+                    }
+                    // go home
+                    Debug.WriteLine("go home");
+                    option.Click(91, 658);
+                    option.Wait(2000);
+                }
+
                 // get treasure when treasure!
                 if (option.RegnizeColor(281, 255, "F4F1E1")
                     && option.RegnizeColor(648, 271, "F4F1E1")

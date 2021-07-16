@@ -77,8 +77,14 @@ namespace BeastAutoRun.option
 
         ~Opdll()
         {
-            // unbinding the windows
-            op.UnBindWindow();
+            try
+            {
+                // unbinding the windows
+                op.UnBindWindow();
+            }
+            catch
+            { }
+
         }
 
         public static OpInterface GetInstance()
