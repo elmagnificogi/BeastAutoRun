@@ -52,8 +52,9 @@ namespace BeastAutoRun.option
 
             if(hwnd != optionHwnd)
             {
-                op.UnBindWindow();
-                return Binding();
+                return false;
+                //op.UnBindWindow();
+                //return Binding();
             }
             return true;
         }

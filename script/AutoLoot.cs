@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BeastAutoRun.script
 {
@@ -32,9 +33,13 @@ namespace BeastAutoRun.script
 
         private bool ready()
         {
-            if (option.GameCheck())
-                return true;
-            return false;
+            if (!option.GameCheck())
+            {
+                MessageBox.Show("请重启本程序");
+                return false;
+            }
+
+            return true;
         }
 
         public void buy(BuyItems item)
@@ -146,7 +151,7 @@ namespace BeastAutoRun.script
                     {
                         option.Click(637, 500);
                     }
-                    option.Wait(2000);
+                    option.Wait(3000);
                 }
 
                 // enter arena
