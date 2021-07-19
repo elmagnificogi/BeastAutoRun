@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BeastAutoRun.option
 {
@@ -29,9 +31,10 @@ namespace BeastAutoRun.option
         public void Click(int x, int y)
         {
             opdll.MoveTo(x, y);
-            opdll.Sleep(100);
+            Wait(100);
+            //opdll.Sleep(100);
             opdll.LeftDown();
-            opdll.Sleep(100);
+            Wait(100);
             opdll.LeftUp();
             opdll.MoveTo(1200, 50);
         }
@@ -48,8 +51,8 @@ namespace BeastAutoRun.option
         }
         public void Wait(int time)
         {
-            opdll.Sleep(time);
-        }
 
+            Thread.Sleep(time);
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -89,7 +90,7 @@ namespace BeastAutoRun.script
             run = false;
         }
 
-        public void start()
+        public void start(bool jump_vault,bool dungeon_full_reward)
         {
              if (!ready())
                 return;
@@ -123,12 +124,25 @@ namespace BeastAutoRun.script
                     && option.RegnizeColor(162, 485, "BFC4CC")
                     && option.RegnizeColor(214, 485, "BFC4CC"))
                 {
-                    Debug.WriteLine("get dungeon treasure at home");
-                    for (int i = 0; i < 10; i++)
+                    bool take_it = false;
+                    if(dungeon_full_reward &&
+                        option.RegnizeColor(199, 521, "F4F1E1")&&
+                        option.RegnizeColor(236, 520, "F4F1E1"))
                     {
-                        option.Click(162, 485);
+                        take_it = true;
                     }
-                    option.Wait(2000);
+
+                    if (!dungeon_full_reward) take_it = true;
+
+                    if(take_it)
+                    {
+                        Debug.WriteLine("get dungeon treasure at home");
+                        for (int i = 0; i < 10; i++)
+                        {
+                            option.Click(162, 485);
+                        }
+                        option.Wait(2000);
+                    }
                 }
 
                 // enter dungeon
@@ -194,9 +208,25 @@ namespace BeastAutoRun.script
                         option.Click(637, 500);
                     }
 
+                    if(jump_vault)
+                    {
+                        if (option.RegnizeColor(588, 56, "000000")
+                            && option.RegnizeColor(636, 42, "000000")
+                            && option.RegnizeColor(693, 51, "000000")
+                            && option.RegnizeColor(529, 66, "EAE8C5"))
+                        {
+                            // go home
+                            Debug.WriteLine("go home jump vault");
+                            option.Click(91, 658);
+                            option.Wait(2000);
+                            continue;
+                        }
+                    }
+
                     Debug.WriteLine("go ahead");
                     option.Click(1188, 620);
                     option.Wait(2000);
+
                 }
 
                 // get treasure when defeat
@@ -283,8 +313,9 @@ namespace BeastAutoRun.script
                     onlyHome = 0;
                 }
 
-                //option.Click(637, 357);
                 option.Wait(100);
+                //Task.Delay(100);
+                //Thread.Sleep(100);
                 loop_time++;
             }
             Debug.WriteLine("AutoLoot stop");
