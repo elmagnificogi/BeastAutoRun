@@ -81,7 +81,7 @@ namespace BeastAutoRun.option
             try
             {
                 // unbinding the windows
-                op.UnBindWindow();
+                //op.UnBindWindow();
             }
             catch
             { }

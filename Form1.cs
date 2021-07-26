@@ -37,12 +37,13 @@ namespace BeastAutoRun
         {
             bool jump_vault = checkBox1.Checked;
             bool dungeon_full_reward = checkBox2.Checked;
+            bool jump_loop = checkBox3.Checked;
 
             if (!autoLoot.run)
             {
                 autoLootTask = new Task(() =>
                 {
-                    autoLoot.start(jump_vault, dungeon_full_reward);
+                    autoLoot.start(jump_vault, dungeon_full_reward, jump_loop);
                 });
                 autoLootTask.Start();
                 progressBar_start();

@@ -90,7 +90,7 @@ namespace BeastAutoRun.script
             run = false;
         }
 
-        public void start(bool jump_vault,bool dungeon_full_reward)
+        public void start(bool jump_vault,bool dungeon_full_reward,bool jump_loop)
         {
              if (!ready())
                 return;
@@ -285,6 +285,11 @@ namespace BeastAutoRun.script
                 {
                     goon++;
                     onlyHome = 0;
+                    if (jump_loop && option.RegnizeColor(643, 669, "B75F1B"))
+                    {
+                        goon = 0;
+                    }
+
                     if (goon>=20)
                     {
                         Debug.WriteLine("start run");
